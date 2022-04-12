@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "student-management-system",
-            "python": "C:/Users/siwar/OneDrive/Bureau/student-management-system/my_env/Scripts/python",
+            "python": "C:/Users/siwar/OneDrive/Bureau/student-management-system/my_env/Scripts/python.exe",
             "type": "python",
             "request": "launch",
             "program": "C:/Users/siwar/OneDrive/Bureau/student-management-system/student_management_system/manage.py",

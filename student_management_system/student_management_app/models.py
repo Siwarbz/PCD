@@ -22,6 +22,7 @@ class Admin(models.Model):
 class Class(models.Model):
     id=models.AutoField(primary_key=True)
     class_name=models.CharField(max_length=255)
+    level=models.IntegerField()
     objects=models.Manager() 
 
 class Courses(models.Model):
@@ -35,6 +36,8 @@ class Teachers(models.Model):
      id=models.AutoField(primary_key=True)
      admin=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
      address=models.TextField()
+     created_at=models.DateTimeField(auto_now_add=True)
+     updated_at=models.DateTimeField(auto_now_add=True)
      
      objects=models.Manager()
 
@@ -45,7 +48,7 @@ class Subjects(models.Model):
     subject_name=models.CharField(max_length=255)
     course_id=models.ForeignKey(Courses,on_delete=models.CASCADE)
     teacher_id=models.ForeignKey(Teachers,on_delete=models.CASCADE)
-    class_id=models.ForeignKey(Class,on_delete=models.CASCADE)
+    class_id=models.ForeignKey(Class,on_delete=models.CASCADE,default=1)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
     objects=models.Manager()
@@ -57,6 +60,9 @@ class Homework(models.Model):
     class_id=models.ForeignKey(Class,on_delete=models.CASCADE)
     teacher_id=models.ForeignKey(Teachers,on_delete=models.CASCADE)
     subject_id=models.ForeignKey(Subjects,on_delete=models.CASCADE)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now_add=True)
+     
     objects=models.Manager()
  
 
@@ -69,7 +75,9 @@ class Exams(models.Model):
     class_id=models.ForeignKey(Class,on_delete=models.CASCADE)
     teacher_id=models.ForeignKey(Teachers,on_delete=models.CASCADE)
     subject_id=models.ForeignKey(Subjects,on_delete=models.CASCADE)
-   
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now_add=True)
+     
     objects=models.Manager()
 
 class Parents(models.Model):
@@ -81,6 +89,8 @@ class Parents(models.Model):
     class_id=models.ForeignKey(Class,on_delete=models.DO_NOTHING)
     session_start_year=models.DateField()
     session_end_year=models.DateField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now_add=True)
     
     objects=models.Manager()
 
@@ -172,7 +182,7 @@ def create_user_profile(sender,instance,created,**kwargs):
         if instance.user_type==2:
             Teachers.objects.create(admin=instance)
         if instance.user_type==3:
-            Parents.objects.create(admin=instance)
+            Parents.objects.create(admin=instance,class_id=Class.objects.get(id=1),session_start_year='2022-01-01',session_end_year='2023-01-01',address="",kid_gender="")
 
 @receiver(post_save,sender=CustomUser)
 def save_user_profile(sender,instance,**kwargs):
