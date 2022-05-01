@@ -1,0 +1,59 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Add subject
+{% endblock page_title %}
+{% block main_content %}
+
+ <!-- Main content -->
+ <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add new subject</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" action="/add_subject_save" method="post">
+                {% csrf_token %}
+              <div class="card-body">
+                
+                <div class="form-group">
+                  <label >Subject name</label>
+                  <input type="text" class="form-control"  placeholder="Francais,Math..." name="subject_name">
+                </div>
+                
+                
+                  <div class="form-group">
+                    {% if messages %}
+                  <div class="col-12">
+                    {% for mess in messages %}
+                    {% if mess.tags == "error" %}
+                    <div class="alert alert-danger" style="margin-top:10px">{{mess}}</div>
+                    {% endif %}
+                    {% if mess.tags == "success" %}
+                    <div class="alert alert-success" style="margin-top:10px">{{mess}}</div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <!-- /.col -->
+                  </div>
+               
+                
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Add subject</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>  
+    </div>  
+     
+  </section>
+  <!-- /.content -->
+  {% endblock main_content %}

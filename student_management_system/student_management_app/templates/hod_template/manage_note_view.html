@@ -1,0 +1,142 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Voir les notes
+{% endblock page_title %}
+{% block main_content %}
+
+ <!-- Main content -->
+ <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Classe:  Niveau:  {{class_id.level}}  groupe:  {{class_id.class_name}}  <br> <br>  Matière:       {{subject_id.subject_name}}   ||   de M/Mme: {{teacher_id.admin.first_name}}{{teacher_id.admin.last_name}}</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" action="/remplir_note_save" method="post">
+                {% csrf_token %}
+                
+                  
+                  
+              <div class="card-body">
+                
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                      <thead>
+                        <tr>
+                            <th>Nom élève</th>
+                            {% for nt in liste %}
+                            <th>
+                                
+                             
+                             {{nt.parent_id.admin.first_name}}{{nt.parent_id.admin.last_name}}
+                           
+                           
+                            </th>
+                            {% endfor %}
+                          
+                          
+                          
+                        
+                        </tr>
+                        <tr>
+                            <th>Note de controle</th>
+                            {% for nt in liste1 %}
+                            <th>
+                                
+                             
+                                {{nt.note}}
+                              
+                              
+                               </th>
+                            {% endfor %}
+                            
+                          
+                          
+                          
+                        
+                        </tr>
+                        <tr>
+                            <th>Note de l'orale</th>
+                            {% for nt in liste2 %}
+                            <th>
+                                
+                             
+                                {{nt.note}}
+                              
+                              
+                               </th>
+                            {% endfor %}
+                            
+                          
+                          
+                          
+                        
+                        </tr>
+                        <tr>
+                            <th>Note de l'examen</th>
+                            {% for nt in liste3 %}
+                            <th>
+                                
+                             
+                                {{nt.note}}
+                              
+                              
+                               </th>
+                            {% endfor %}
+                            
+                          
+                          
+                          
+                        
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        
+                         
+                        
+                         
+                     
+                        
+                      </tbody>
+                    </table>
+                    
+                  </div>
+                
+                  
+               
+                
+              </div>
+              
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <div class="form-group">
+                    {% if messages %}
+                  <div class="col-12">
+                    {% for mess in messages %}
+                    {% if mess.tags == "error" %}
+                    <div class="alert alert-danger" style="margin-top:10px">{{mess}}</div>
+                    {% endif %}
+                    {% if mess.tags == "success" %}
+                    <div class="alert alert-success" style="margin-top:10px">{{mess}}</div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <!-- /.col -->
+                  </div>
+               
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>  
+    </div>  
+     
+  </section>
+  <!-- /.content -->
+  {% endblock main_content %}

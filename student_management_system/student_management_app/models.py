@@ -25,6 +25,12 @@ class Class(models.Model):
     level=models.IntegerField()
     objects=models.Manager() 
 
+class Subjects(models.Model):
+    id=models.AutoField(primary_key=True)
+    subject_name=models.CharField(max_length=255)
+    
+    objects=models.Manager()     
+
 class Courses(models.Model):
     id=models.AutoField(primary_key=True)
     course_name=models.CharField(max_length=255)
@@ -43,10 +49,9 @@ class Teachers(models.Model):
 
 
 
-class Subjects(models.Model):
+class Specification(models.Model):
     id=models.AutoField(primary_key=True)
-    subject_name=models.CharField(max_length=255)
-    course_id=models.ForeignKey(Courses,on_delete=models.CASCADE)
+    subject_id=models.ForeignKey(Subjects,on_delete=models.CASCADE)
     teacher_id=models.ForeignKey(Teachers,on_delete=models.CASCADE)
     class_id=models.ForeignKey(Class,on_delete=models.CASCADE,default=1)
     created_at=models.DateTimeField(auto_now_add=True)
@@ -80,6 +85,8 @@ class Exams(models.Model):
      
     objects=models.Manager()
 
+
+
 class Parents(models.Model):
     id=models.AutoField(primary_key=True)
     kid_name=models.CharField(max_length=255)
@@ -91,10 +98,27 @@ class Parents(models.Model):
     session_end_year=models.DateField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
-    
     objects=models.Manager()
 
- 
+class Facturation(models.Model):
+    id=models.AutoField(primary_key=True)
+    parent_id=models.ForeignKey(Parents,on_delete=models.DO_NOTHING)
+   
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now_add=True)
+    objects=models.Manager()
+
+class Note(models.Model):
+    id=models.AutoField(primary_key=True)
+    exam_name=models.CharField(max_length=255)
+    note=models.IntegerField()
+    parent_id=models.ForeignKey(Parents,on_delete=models.DO_NOTHING)
+    class_id=models.ForeignKey(Class,on_delete=models.DO_NOTHING)
+    subject_id=models.ForeignKey(Subjects,on_delete=models.DO_NOTHING)
+    teacher_id=models.ForeignKey(Teachers,on_delete=models.DO_NOTHING)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now_add=True)
+    objects=models.Manager()
 
 
 class Attendance(models.Model):
@@ -172,7 +196,50 @@ class NotificationTeacher(models.Model):
     message=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
-    objects=models.Manager()    
+    objects=models.Manager()  
+
+class Schedule(models.Model):
+     id=models.AutoField(primary_key=True)
+     class_id=models.ForeignKey(Class,on_delete=models.DO_NOTHING)
+     teacher_id=models.ForeignKey(Teachers,on_delete=models.DO_NOTHING)
+     subject_id=models.ForeignKey(Subjects,on_delete=models.DO_NOTHING)
+     year=models.TextField()
+     session_time=models.TextField()
+     session_day=models.TextField()
+     created_at=models.DateTimeField(auto_now_add=True)
+     updated_at=models.DateTimeField(auto_now_add=True)
+     
+     objects=models.Manager()  
+class Days_nbr(models.Model):
+    id=models.AutoField(primary_key=True)
+    day_nbr=models.IntegerField()
+
+class ExamSchedule(models.Model):
+     id=models.AutoField(primary_key=True)
+     class_id=models.ForeignKey(Class,on_delete=models.DO_NOTHING)
+     
+     subject_id=models.ForeignKey(Subjects,on_delete=models.DO_NOTHING)
+     date=models.DateField()
+     session_time=models.TextField()
+     num=models.TextField()
+     day_nbr_id=models.ForeignKey(Days_nbr,on_delete=models.DO_NOTHING)
+     created_at=models.DateTimeField(auto_now_add=True)
+     updated_at=models.DateTimeField(auto_now_add=True)
+     
+     objects=models.Manager()  
+
+class Chatbot(models.Model):
+     id=models.AutoField(primary_key=True)
+     parent_id=models.ForeignKey(Parents,on_delete=models.DO_NOTHING)
+     class_id=models.ForeignKey(Class,on_delete=models.DO_NOTHING)
+     
+     Type=models.TextField()
+     reclamation=models.TextField()
+     
+     created_at=models.DateTimeField(auto_now_add=True)
+     updated_at=models.DateTimeField(auto_now_add=True)
+     
+     objects=models.Manager()       
 
 @receiver(post_save,sender=CustomUser)
 def create_user_profile(sender,instance,created,**kwargs):

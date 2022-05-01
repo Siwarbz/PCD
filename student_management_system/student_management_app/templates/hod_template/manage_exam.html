@@ -1,0 +1,158 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Voir Calendrier
+{% endblock page_title %}
+{% block main_content %}
+
+ <!-- Main content -->
+ <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card card-primary">
+            <div class="card-header">
+                
+                
+                    <h3 class="card-title">Emploi de la classe: Niveau {{ class_obj.level }} groupe {{class_obj.class_name}} ||   Semestre: {{ num }}</h3>
+      
+                    
+                  
+               
+             
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+              <table class="table table-hover text-nowrap">
+                <thead>
+                    <tr>
+                        <th>Heures</th>
+                    {% for ep in liste %}
+                        
+                      <th >{{ep.date}}</th>
+                      
+                      
+                    {% endfor %} 
+                    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        
+                        <td>08:00/09:50</td>
+                  {% for ep in liste1 %}
+                  
+                  
+                    <td>{{ ep.subject_id.subject_name }}
+                        
+                    </td>
+                    
+                    
+                    
+                    
+                  
+                   
+                 
+                  {% endfor %}
+                 </tr>
+                 <tr>
+                    <td>
+                        09:50/10:10
+                           
+                  </td>
+                  <td colspan="12"><span class="right badge badge-danger">PAUSE</span></td>
+
+                  </tr>
+
+                 <tr>
+                        
+                    <td>10:10/12:00</td>
+              {% for ep in liste2 %}
+              
+              
+              <td>{{ ep.subject_id.subject_name }}
+               
+            </td>
+                
+                
+                
+              
+               
+             
+              {% endfor %}
+             </tr>
+
+             <tr>
+                        
+                <td>12:00/13:00</td>
+          {% for ep in liste3 %}
+          
+          
+          <td>{{ ep.subject_id.subject_name }}
+           
+        </td>
+            
+            
+            
+          
+           
+         
+          {% endfor %}
+         </tr>
+
+         <tr>
+                        
+            <td>13:00/14:50</td>
+      {% for ep in liste4 %}
+      
+      
+      <td>{{ ep.subject_id.subject_name }}
+      
+    </td>
+        
+        
+        
+      
+       
+     
+      {% endfor %}
+     </tr>
+    </tr>
+    <tr>
+       <td>
+           14:50/15:10
+              
+     </td>
+     <td colspan="12"><span class="right badge badge-danger">PAUSE</span></td>
+
+     </tr>
+
+     <tr>
+                        
+        <td>15:10/17:00</td>
+  {% for ep in liste5 %}
+  
+  
+  <td>{{ ep.subject_id.subject_name }}
+   
+</td>
+    
+    
+    
+  
+   
+ 
+  {% endfor %}
+ </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </div>  
+     
+  </section>
+  <!-- /.content -->
+  {% endblock main_content %}
