@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from student_management_app.models import Parents, Courses, Subjects, CustomUser, Attendance, Attendance_Report, Teachers, Homework, Exams, Facturation, FeedBackParent, Chatbot
+from student_management_app.models import Parents, Courses, Subjects, CustomUser, Attendance, Attendance_Report, Teachers, Homework, Exams, Facturation, FeedBackParent, Chatbot, Class
 
 def student_home(request):
     parent_obj=Parents.objects.get(admin=request.user.id)
@@ -103,16 +103,19 @@ def feedback_save(request):
             return HttpResponseRedirect(reverse("feedback"))
 
 def chatbot(request):
-    return render(request,"parent_template/chatbot.html")
+    classes = Class.objects.all()
+    return render(request,"parent_template/chatbot.html" , { "classes": classes})
 def chatbot_save(request):
     if request.method != "POST":
         return HttpResponse("Method Not Allowed")
     else:
         parent = Parents.objects.get(admin=request.user.id)
-        class_id = parent.class_id
         category=request.POST.get("category")
         reclamation = request.POST.get("reclamation")
+        class_id = parent.class_id
+
         try:
+
             chatbot=Chatbot(class_id=class_id,created_at=date, parent_id=parent, Type=category, reclamation=reclamation)
             chatbot.save()
             messages.success(request, "feedback envoyé")
