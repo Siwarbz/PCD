@@ -1,0 +1,108 @@
+{% extends 'parent_template/base_template.html' %}
+{% block page_title %}
+Paiement des factures
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">remplir ce formulaire soigneusement</h3>
+
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="facturation_save" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group">
+                    <label>Nom </label>
+                    <input type="text" class="form-control" name="nom" placeholder="entrer le nom de votre fils">
+                  </div>
+                    <div class="form-group">
+                    <label>prénom </label>
+                    <input type="text" class="form-control" name="prenom" placeholder="entrer le prénom de votre fils">
+                  </div>
+                    <div class="form-group">
+                    <select class="form-control" name="semestre">
+                          <option>trimèstre1 </option>
+                          <option>trimèstre 2</option>
+                          <option>trimèstre 3</option>
+                        </select>
+                    </div>
+                  <div class="form-group">
+                    <label>Num de carte </label>
+                    <input type="text" class="form-control" name="carte" placeholder="entrer le numéro de carte">
+                  </div>
+                    <div class="form-group">
+                    <label>mot de passe </label>
+                    <input type="password" class="form-control" name="password" placeholder="entrer le mot de passe">
+                  </div>
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Payer</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+<form role="form">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>

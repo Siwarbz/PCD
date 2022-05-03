@@ -1,0 +1,77 @@
+{% extends 'parent_template/base_template.html' %}
+{% block page_title %}
+Voir les cours
+{% endblock page_title %}
+{% block main_content %}
+<section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">COURS</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+              <thead>
+                  <tr>
+                      <th style="width: 1%">
+                          #
+                      </th>
+                      <th style="width: 10%">
+                          Date
+                      </th>
+                      <th style="width: 10%">
+                          Matière
+                      </th>
+                      <th style="width: 10%">
+                          Cours
+                      </th>
+                      <th style="width: 30%" class="text-center">
+                          Description
+                      </th>
+                      <th style="width: 10%">
+                          Fichier
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+              {% for cr in cours %}
+                  <tr>
+                      <td>
+                          #
+                      </td>
+                      <td>
+                          <small>
+                              {{cr.created_at}}
+                          </small>
+                      </td>
+                      <td>
+                          {{cr.subject_name}}
+                      </td>
+                      <td >
+                          {{cr.course_name}}
+                      </td>
+                      <td>
+                          {{cr.description}}
+                      </td>
+                      <td class="project-actions text-right">
+                         {{cr.file}}
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+{% endblock main_content %}

@@ -1,0 +1,77 @@
+{% extends 'parent_template/base_template.html' %}
+{% block page_title %}
+Voir les notes des examens
+{% endblock page_title %}
+{% block main_content %}
+<section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">EXAMEN</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th style="width: 1%">
+                          #
+                      </th>
+                      <th style="width: 10%">
+                          Date
+                      </th>
+                      <th style="width: 10%">
+                          EXAMEN
+                      </th>
+                      <th style="width: 10%">
+                          Note
+                      </th>
+                      <th style="width: 30%" class="text-center">
+                          Remarque
+                      </th>
+                      <th style="width: 10%">
+                          Matière
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+              {% for ex in exam %}
+                  <tr>
+                      <td>
+                          #
+                      </td>
+                      <td>
+                          <small>
+                              {{ex.created_at}}
+                          </small>
+                      </td>
+                      <td>
+                          {{ex.exam_name}}
+                      </td>
+                      <td >
+                          {{ex.mark}}
+                      </td>
+                      <td>
+                          {{ex.remarque}}
+                      </td>
+                      <td class="project-actions text-right">
+                         {{ex.subject_id.subject_name}}
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+{% endblock main_content %}
