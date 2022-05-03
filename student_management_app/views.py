@@ -23,7 +23,7 @@ def doLogin(request):
         if user!=None:
             login(request,user)
             if user.user_type=="1":
-                return render(request,"demo.html")
+                return HttpResponseRedirect("/admin_home")
             elif user.user_type=="2":
                 return HttpResponseRedirect(reverse("staff_home"))
             else:

@@ -1,10 +1,249 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static 'dist/img/AdminLTELogo.png'%}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">MonEcole</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">School Admin</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview ">
+            <a href="/admin_home" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+         </li>
+         <li class="nav-item">
+            <a href="/exam_calendar" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                Exams/events Calendar
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="/chatbot" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>
+                Chatbot
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/mailbox/mailbox.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inbox</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/mailbox/compose.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Compose</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/mailbox/read-mail.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Read</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Homework
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/examples/profile.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Profile</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/homework" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Homework</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/contact" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contacts</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/add_class" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add class
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/manage_class" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage class
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/add_teacher" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add teacher
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/manage_teacher" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage teachers
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/add_parent" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add student/parent
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/manage_parent" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage parents
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/add_course" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add course
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/manage_course" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage course
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/add_subject" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add subject
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/manage_subject" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage subject
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/view_attendance" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                View Attendance
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/parent_feedback" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Parent feedback
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/teacher_feedback" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Teacher feedback
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/parent_leave" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Parent leave
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/teacher_leave" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Teacher leave
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+
+
+
+
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

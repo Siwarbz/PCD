@@ -1,0 +1,71 @@
+{% extends 'parent_template/chatbot_base.html' %}
+{% block page_title %}
+Chatbot
+{% endblock page_title %}
+{% block main_content %}
+
+<!-- ChatBot -->
+<div class="chat_icon">
+	<i class="fa fa-comments" aria-hidden="true"></i>
+</div>
+<form role="form" action="chatbot_save" method="post">
+         {% csrf_token %}
+<div class="chat_box">
+	<div class="my-conv-form-wrapper" >
+                   <div class="form-group">
+                  <select class="form-control" data-conv-question="Salut, c'est le chatbot de l'école xxxx" name="category">
+                    <option value="WebDevelopment" >Demande de Rendez-vous </option>
+                    <option value="DigitalMarketing1" >Reclamation </option>
+                  </select>
+                   </div>
+
+                  <div data-conv-fork="category" >
+                          <div class="form-group">
+                           <input type="text" class="form-control" name ="reclamation" data-conv-question="Veuillez saisir le Titre de réclamation ci-dessous.">
+                          </div>
+
+                           <div data-conv-case="WebDevelopment" >
+
+                              <select class="form-control" data-conv-question="veuillez choisir l'une des options" name="RV">
+                                <option value="admin">avec l'administration</option>
+                                <option value="ens">avec un enseignant</option>
+                              </select>
+
+                                  <div data-conv-fork="RV" >
+                                    <div data-conv-case="admin" >
+                                      <input type="text" name="NomPrénom" data-conv-question="veuillez entrer votre nom et prénom ">
+                                      <input type="text" data-conv-question="Monsieur/Madame {NomPrénom}, <br> Votre demande a été prise en considération." data-no-answer="true">
+                                    </div>
+                                  </div>
+                                  <div data-conv-fork="RV" >
+                                    <div data-conv-case="ens">
+                                      <input type="text" name="NomPrénom" data-conv-question="veuillez saisir votre nom et prénom">
+                                      <input type="text" name="NomEns" data-conv-question="veuillez entrer le nom et le prénom de l'enseignant">
+                                      <input type="text" data-conv-question="Monsieur/Madame, {NomPrénom} <br> Votre demande a été prise en considération." data-no-answer="true">
+                                    </div>
+                          </div>
+
+              </div>
+
+                  <div data-conv-fork="category">
+                    <div data-conv-case="DigitalMarketing1" >
+
+                          <input type="text" name="NomPrénom" data-conv-question="veuillez entrer votre nom et prénom">
+                          <input type="text" data-conv-question="Monsieur/Madame {NomPrénom} , veuillez saisir le text de réclamation ci-dessous.">
+                          <input type="text" data-conv-question="Monsieur/Madame {NomPrénom} , on va étudier votre réclamation et on vous répond le plutot possible." data-no-answer="true">
+
+                    </div>
+                  </div>
+
+      <select data-conv-question="quitter la conversation">
+        <option value="Yes">Quitter</option>
+      </select>
+
+
+	</div>
+</div>
+</form>
+<!-- ChatBot end -->
+
+<!-- Main Sidebar Container -->
+{% endblock main_content %}
