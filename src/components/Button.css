@@ -1,0 +1,84 @@
+:root {
+    --primary:#fff;
+}
+
+.btn {
+    padding: 8px 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+
+}
+
+.btn--primary{
+    background-color: var(--primary);
+    color:#7027A0;
+    border: 1px solid var(--primary);
+}
+
+.btn--outline{
+    background-color: transparent;
+    color: #fff;
+    padding: 8px 20px;
+    border: 1px solid var(--primary);
+    transition: all 0.3s ease-out;
+}
+
+.btn--medium {
+    padding:8px 20px;
+    font-size: 18px;
+
+}
+
+.btn--large {
+    padding:12px 26px;
+    font-size: 20px
+}
+
+.btn--mobile {
+    text-align: center;
+    border-radius: 4px;
+    width: 80%;
+    text-decoration: none;
+    font-size: 24px;
+    background-color: transparent;
+    color:#fff;
+    padding: 14px 20px;
+    border:1px solid #fff;
+    transition: all 0.3s ease-out;
+
+}
+
+.btn--large:hover, .btn--medium:hover , .btn--mobile:hover {
+    transition: all 0.3s ease-out;
+    background: #fff;
+    color: #7027A0;
+}
+
+.btn--wide:hover {
+    color: #fff;
+    background-color: #7027A0;
+    transition: all 0.2s ease-out;
+}
+
+.yellow{
+    background-color: #FFB830;
+    color: #fff;
+    border: none;
+}
+
+.blue{
+    background-color: #1DB9C3;
+    color: #fff;
+    border: none;
+}
+
+.pink{
+    background-color: #FB5355;
+    color: #fff;
+    border: none;
+}
+
+
