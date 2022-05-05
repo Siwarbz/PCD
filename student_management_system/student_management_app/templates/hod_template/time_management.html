@@ -1,0 +1,620 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Schedule
+{% endblock page_title %}
+{% block main_content %}
+
+ <!-- Main content -->
+ <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add new Schedule</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" action="/time_management_save" method="post">
+                {% csrf_token %}
+                
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-3">
+                          <label>Classe</label>
+                          <select  class="form-control"  name="class_id">
+                            {% for classe in classes %}
+                               <option value="{{ classe.id }}">level {{classe.level}} group {{classe.class_name}} </option>
+                            {% endfor %}
+                            </select>   
+                        </div>
+                        <div class="col-4">
+                            <label>Année scolaire</label>
+                          <input type="text" class="form-control" placeholder="..../...." name="year">
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                  
+              <div class="card-body">
+                
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                      <thead>
+                        <tr>
+                            <th>Heures</th>
+                          <th colspan="2">Lundi</th>
+                          <th colspan="2">Mardi</th>
+                          <th colspan="2">Mercredi</th>
+                          <th colspan="2">Jeudi</th>
+                          <th colspan="2">Vendredi</th>
+                          <th colspan="2">Samedi</th>
+                          
+                          
+                        
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        <tr>
+                          <td>
+                              08:00/09:50
+                                 
+                        </td>
+                          
+                            <td>
+                                <select  class="form-control"  name="subject_id1">
+                                   
+                                    {% for sb in subjects %}
+                                       <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="teacher_id1">
+                                    {% for tch in teachers %}
+                                       <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+
+
+                            <td>
+                                <select  class="form-control"  name="subject_id2">
+                                   
+                                    {% for sb in subjects %}
+                                       <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="teacher_id2">
+                                    {% for tch in teachers %}
+                                       <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+
+                            <td>
+                                <select  class="form-control"  name="subject_id3">
+                                   
+                                    {% for sb in subjects %}
+                                       <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="teacher_id3">
+                                    {% for tch in teachers %}
+                                       <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="subject_id4">
+                                   
+                                    {% for sb in subjects %}
+                                       <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="teacher_id4">
+                                    {% for tch in teachers %}
+                                       <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="subject_id5">
+                                   
+                                    {% for sb in subjects %}
+                                       <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="teacher_id5">
+                                    {% for tch in teachers %}
+                                       <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="subject_id6">
+                                   
+                                    {% for sb in subjects %}
+                                       <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+                            <td>
+                                <select  class="form-control"  name="teacher_id6">
+                                    {% for tch in teachers %}
+                                       <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                                    {% endfor %}
+                                    </select>  
+                            </td>
+
+                           
+
+                            
+                           
+                       </tr>
+                       <tr>
+                        <td>
+                            09:50/10:10
+                               
+                      </td>
+                      <td colspan="12"><span class="right badge badge-danger">PAUSE</span></td>
+
+                      </tr>
+
+                       <tr>
+                        <td>
+                            10:10/12:00
+                               
+                      </td>
+                        
+                      <td>
+                        <select  class="form-control"  name="subject_id7">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id7">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+
+
+                    <td>
+                        <select  class="form-control"  name="subject_id8">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id8">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+
+                    <td>
+                        <select  class="form-control"  name="subject_id9">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id9">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id10">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id10">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id11">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id11">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id12">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id12">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                     </tr>
+
+                     <tr>
+                        <td>
+                            12:00/13:00
+                               
+                      </td>
+                        
+                      <td>
+                        <select  class="form-control"  name="subject_id13">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id13">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+
+
+                    <td>
+                        <select  class="form-control"  name="subject_id14">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id14">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+
+                    <td>
+                        <select  class="form-control"  name="subject_id15">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id15">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id16">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id16">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id17">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id17">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id18">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id18">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                     </tr>
+                     <tr>
+                        <td>
+                            13:00/14:50
+                               
+                      </td>
+                        
+                      <td>
+                        <select  class="form-control"  name="subject_id19">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id19">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+
+
+                    <td>
+                        <select  class="form-control"  name="subject_id20">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id20">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+
+                    <td>
+                        <select  class="form-control"  name="subject_id21">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id21">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id22">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id22">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id23">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id23">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id24">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id24">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                     </tr>
+                     <tr>
+                        <td>
+                            14:50/15:10
+                               
+                      </td>
+                      <td colspan="12"><span class="right badge badge-danger">PAUSE</span></td>
+
+                      </tr>
+                     <tr>
+                        <td>
+                            15:10/17:00
+                               
+                      </td>
+                        
+                      <td>
+                        <select  class="form-control"  name="subject_id25">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id25">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+
+
+                    <td>
+                        <select  class="form-control"  name="subject_id26">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id26">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+
+                    <td>
+                        <select  class="form-control"  name="subject_id27">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id27">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id28">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id28">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id29">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id29">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="subject_id30">
+                           
+                            {% for sb in subjects %}
+                               <option value="{{ sb.id }}"> {{sb.subject_name}}  </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                    <td>
+                        <select  class="form-control"  name="teacher_id30">
+                            {% for tch in teachers %}
+                               <option value="{{ tch.id }}"> {{tch.admin.first_name}} {{tch.admin.last_name}} </option>
+                            {% endfor %}
+                            </select>  
+                    </td>
+                     </tr>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                
+                  
+               
+                
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <div class="form-group">
+                    {% if messages %}
+                  <div class="col-12">
+                    {% for mess in messages %}
+                    {% if mess.tags == "error" %}
+                    <div class="alert alert-danger" style="margin-top:10px">{{mess}}</div>
+                    {% endif %}
+                    {% if mess.tags == "success" %}
+                    <div class="alert alert-success" style="margin-top:10px">{{mess}}</div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <!-- /.col -->
+                  </div>
+                <button type="submit" class="btn btn-primary">Enregister</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>  
+    </div>  
+     
+  </section>
+  <!-- /.content -->
+  {% endblock main_content %}
