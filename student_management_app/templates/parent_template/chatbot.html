@@ -9,26 +9,26 @@ Chatbot
 	<i class="fa fa-comments" aria-hidden="true"></i>
 </div>
 <form role="form" action="chatbot_save" method="post">
-         {% csrf_token %}
+  {% csrf_token %}
 <div class="chat_box">
 	<div class="my-conv-form-wrapper">
-		<form role="form" action="chatbot_save" method="POST" >
-       <div class="form-group">
-      <select data-conv-question="Salut, c'est le chatbot de l'école xxxx" data-model-name="category">
+
+
+      <select data-conv-question="Salut, c'est le chatbot de l'école xxxx" name="category" class="form-control">
         <option value="WebDevelopment">Demande de Rendez-vous </option>
         <option value="DigitalMarketing1">Reclamation </option>
       </select>
-    </div>
+
 
       <div data-conv-fork="category">
         <div data-conv-case="WebDevelopment">
-            <div class="form-group">
-          <select data-conv-question="veuillez choisir l'une des options" data-model-name="reclamation">
+
+          <select  data-conv-question="veuillez choisir l'une des options" >
             <option value="admin">avec l'administration</option>
             <option value="ens">avec un enseignant</option>
 
           </select>
-            </div>
+
           <div data-conv-fork="RV">
             <div data-conv-case="admin">
               <input type="text" name="NomPrénom" data-conv-question="veuillez entrer votre nom et prénom">
@@ -48,22 +48,22 @@ Chatbot
       <div data-conv-fork="category">
 
         <div data-conv-case="DigitalMarketing1" >
+            <form role="form" action="chatbot_save" method="post">
 
-              <input type="text" name="reclamation" data-conv-question="écrire qq lignes de réclamation!">
-
+                <div class="form-group">
+              <input type="text" name="reclamation"  class="form-control" data-conv-question="écrire qq lignes de réclamation!">
             </div>
+                <button type="submit" class="btn btn-primary">quitter</button>
+                </form>
       </div>
 
 
 
-      <select data-conv-question="quitter la conversation">
-        <option value="Yes">Quitter</option>
-      </select>
+
+
+
 
 	</div>
-</div>
-<div class="card-footer">
-    <button type="submit" class="btn btn-primary btn-block">Terminer</button>
 </div>
 </form>
 <!-- ChatBot end -->

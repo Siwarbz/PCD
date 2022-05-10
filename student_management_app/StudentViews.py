@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from student_management_app.models import Parents, Courses, Subjects, CustomUser, Attendance, Attendance_Report, Teachers, Homework, Exams, Facturation, FeedBackParent, Chatbot, Class
+from student_management_app.models import Parents, Courses, Subjects, CustomUser, Attendance, Attendance_Report, Teachers, Homework, Exams, Facturation, FeedBackParent, Chatbot, Class ,  Advertisement
 
 def student_home(request):
     parent_obj=Parents.objects.get(admin=request.user.id)
@@ -110,16 +110,154 @@ def chatbot_save(request):
         return HttpResponse("Method Not Allowed")
     else:
         parent = Parents.objects.get(admin=request.user.id)
-        category=request.POST.get("category")
         reclamation = request.POST.get("reclamation")
         class_id = parent.class_id
+        chatbot=Chatbot(class_id=class_id, parent_id=parent, Type="aaa", reclamation=reclamation)
+        chatbot.save()
+        messages.success(request, "feedback envoyé")
+        return HttpResponseRedirect(reverse("chatbot"))
 
-        try:
+def avertissement(request):
+    student = Parents.objects.get(admin=request.user.id)
+    avr = Advertisement.objects.all()
+    matiere = Subjects.objects.all()
+    ens = Advertisement.objects.filter(parent_id=student)
+    return render(request, "parent_template/avertissement.html",{"ens": ens ,"avr": avr, "matiere": matiere})
+def profil(request):
+    student = Parents.objects.get(admin=request.user.id)
+    return render(request, "parent_template/profil.html",{"student": student })
 
-            chatbot=Chatbot(class_id=class_id,created_at=date, parent_id=parent, Type=category, reclamation=reclamation)
-            chatbot.save()
-            messages.success(request, "feedback envoyé")
-            return HttpResponseRedirect(reverse("chatbot"))
-        except:
-            messages.error(request,"Erreur d'envoi")
-            return HttpResponseRedirect(reverse("chatbot"))
+
+def manage_schedule(request):
+    classes = Class.objects.all()
+    return render(request, "parent_template/manage_schedule.html", {"classes": classes})
+
+
+def schedule_open(request):
+    emploi = Schedule.objects.all()
+
+    class_id = request.POST.get("class_id")
+    year = request.POST.get("year")
+    class_obj = Class.objects.get(id=class_id)
+    global class_id_val
+
+    def class_id_val():
+        return class_obj
+
+    global year_val
+
+    def year_val():
+        return year
+
+    ok = False
+    for ep in emploi:
+        if (ep.class_id == class_obj) and (ep.year == year):
+            ok = True
+            return HttpResponseRedirect("schedule")
+    if ok == False:
+        messages.error(request, "On a pas trouvé l'emploi")
+        return HttpResponseRedirect("manage_schedule")
+
+
+def schedule(request):
+    emploi = Schedule.objects.all()
+    class_obj = class_id_val()
+    year = year_val()
+    liste1 = []
+    liste2 = []
+    liste3 = []
+    liste4 = []
+    liste5 = []
+    n = 1
+    for ep in emploi:
+        if (ep.class_id == class_obj) and (ep.year == year):
+
+            if n <= 6:
+                liste1.append(ep)
+                n = n + 1
+            elif 6 < n <= 12:
+                liste2.append(ep)
+                n = n + 1
+            elif 12 < n <= 18:
+                liste3.append(ep)
+                n = n + 1
+            elif 18 < n <= 24:
+                liste4.append(ep)
+                n = n + 1
+            else:
+                liste5.append(ep)
+                n = n + 1
+
+    return render(request, "parent_template/schedule.html",
+                  {"class_obj": class_obj, "year": year, "liste1": liste1, "liste2": liste2, "liste3": liste3,
+                   "liste4": liste4, "liste5": liste5})
+
+
+def manage_exam_open(request):
+    emploi = ExamSchedule.objects.all()
+
+    class_id = request.POST.get("class_id")
+    num = request.POST.get("num")
+    class_obj = Class.objects.get(id=class_id)
+    global class_id_val1
+
+    def class_id_val1():
+        return class_obj
+
+    global num_val1
+
+    def num_val1():
+        return num
+
+    ok = False
+    for ep in emploi:
+        if (ep.class_id == class_obj) and (ep.num == num):
+            ok = True
+            return HttpResponseRedirect("manage_exam")
+    if ok == False:
+        messages.error(request, "On a pas trouvé calendrier")
+        return HttpResponseRedirect("manage_exam_day")
+
+
+def manage_exam(request):
+    emploi = ExamSchedule.objects.all()
+    class_obj = class_id_val1()
+    num = num_val1()
+    liste = []
+    liste1 = []
+    liste2 = []
+    liste3 = []
+    liste4 = []
+    liste5 = []
+
+    n = 0
+    for ep in emploi:
+        if (ep.class_id == class_obj) and (ep.num == num):
+            nb = ep.day_nbr_id.day_nbr
+            if n < nb:
+                liste1.append(ep)
+                n = n + 1
+            elif nb <= n < nb * 2:
+                liste2.append(ep)
+                n = n + 1
+            elif nb * 2 <= n < nb * 3:
+                liste3.append(ep)
+                n = n + 1
+            elif nb * 3 <= n < nb * 4:
+                liste4.append(ep)
+                n = n + 1
+            else:
+                liste5.append(ep)
+                n = n + 1
+    n = 0
+    for ep in liste1:
+        if n < nb:
+            liste.append(ep)
+            n = n + 1
+
+    return render(request, "parent_template/manage_exam.html",
+                  {"class_obj": class_obj, "num": num, "liste": liste, "liste1": liste1, "liste2": liste2,
+                   "liste3": liste3, "liste4": liste4, "liste5": liste5})
+def manage_exam_day(request):
+    classes=Class.objects.all()
+    return render(request,"parent_template/manage_exam_day.html",{"classes":classes})

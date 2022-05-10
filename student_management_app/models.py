@@ -45,11 +45,15 @@ class Courses(models.Model):
 
 
 class Teachers(models.Model):
-    id = models.AutoField(primary_key=True)
-    admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    address = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    id=models.AutoField(primary_key=True)
+    admin=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
+    address=models.TextField()
+    subject_name=models.CharField(max_length=255, default=NULL)
+    start_year=models.IntegerField(default=NULL)
+    profile_pic=models.FileField(default=NULL)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now_add=True)
+    objects=models.Manager()
 
     objects = models.Manager()
 
@@ -98,6 +102,7 @@ class Exams(models.Model):
 class Parents(models.Model):
     id = models.AutoField(primary_key=True)
     kid_name = models.CharField(max_length=255)
+    kid_name2 = models.CharField(max_length=255, default="Mhamdi")
     kid_gender = models.CharField(max_length=255)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     address = models.TextField()
@@ -209,7 +214,69 @@ class Chatbot(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
+class Advertisement(models.Model):
+    id=models.AutoField(primary_key=True)
+    parent_id=models.ForeignKey(Parents, on_delete=models.CASCADE)
+    teacher_id=models.ForeignKey(Teachers, on_delete=models.CASCADE)
+    created_at=models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
+
+class Schedule(models.Model):
+    id = models.AutoField(primary_key=True)
+    class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
+    teacher_id = models.ForeignKey(Teachers, on_delete=models.DO_NOTHING)
+    subject_id = models.ForeignKey(Subjects, on_delete=models.DO_NOTHING)
+    year = models.TextField()
+    session_time = models.TextField()
+    session_day = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
+
+
+class Days_nbr(models.Model):
+    id = models.AutoField(primary_key=True)
+    day_nbr = models.IntegerField()
+
+
+class ExamSchedule(models.Model):
+    id = models.AutoField(primary_key=True)
+    class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
+
+    subject_id = models.ForeignKey(Subjects, on_delete=models.DO_NOTHING)
+    date = models.DateField()
+    session_time = models.TextField()
+    num = models.TextField()
+    day_nbr_id = models.ForeignKey(Days_nbr, on_delete=models.DO_NOTHING)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
+
+
+class Conversation(models.Model):
+    id = models.AutoField(primary_key=True)
+    RV_administration = models.IntegerField(
+        default=NULL)  # prend 1 si le parent demande un rendez vouz avec l'administration
+    RV_enseignant = models.IntegerField(default=NULL)  # prend 1 si le parent demande un rendez vouz avec l'enseignant
+    NomPrenom_Ens = models.CharField(max_length=255, default=NULL)
+    Reclamation = models.IntegerField(default=NULL)  # prend 1 si le parent veut faire une réclamation
+    Titre_réclamation = models.CharField(max_length=255, default=NULL)
+    Contenue_réclamation = models.CharField(max_length=255, default=NULL)
+    Date_réclamation = models.DateField(default=NULL)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
+
+    class RVenseignant(models.Model):
+        id = models.AutoField(primary_key=True)
+        teacher_name = models.CharField(max_length=255, default=NULL)
+        Parent_name = models.CharField(max_length=255, default=NULL)
+        created_at = models.DateTimeField(auto_now_add=True)
+        updated_at = models.DateTimeField(auto_now_add=True)
 
 @receiver(post_save, sender=CustomUser)
 def create_user_profile(sender, instance, created, **kwargs):

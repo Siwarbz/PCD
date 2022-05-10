@@ -51,4 +51,12 @@ urlpatterns = [
     path('feedback_save', StudentViews.feedback_save, name="feedback_save"),
     path('chatbot', StudentViews.chatbot, name="chatbot"),
     path('chatbot_save', StudentViews.chatbot_save, name="chatbot_save"),
+    path('avertissement', StudentViews.avertissement, name="avertissement"),
+    path('profil', StudentViews.profil, name="profil"),
+    path('manage_schedule',StudentViews.manage_schedule),
+    path('schedule_open',StudentViews.schedule_open),
+    path('schedule',StudentViews.schedule),
+    path('manage_exam_day', StudentViews.manage_exam_day),
+    path('manage_exam_open', StudentViews.manage_exam_open),
+    path('manage_exam', StudentViews.manage_exam),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

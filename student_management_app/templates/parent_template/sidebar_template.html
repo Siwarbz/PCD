@@ -11,9 +11,7 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{% static "dist/img/user2-160x160.jpg" %}" class="img-circle elevation-2" alt="User Image">
-        </div>
+
         <div class="info">
           <a href="#" class="d-block">{{ user.username }}</a>
         </div>
@@ -29,23 +27,21 @@
             <a href="{{ student_home }}" class="nav-link {% if request.path == student_home %} active {% endif %}">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Home
+                Accueil
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            {% url 'student_view_attendance' as student_view_attendance %}
-            <a href="{{ student_view_attendance }}" class="nav-link {% if request.path == student_view_attendance %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Absence
-              </p>
+           <li class="nav-item">
+            {% url 'profil' as profil %}
+            <a href="{{ profil }}" class="nav-link {% if request.path == profil %} active {% endif %}">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Mon profil</p>
             </a>
           </li>
           <li class="nav-item">
             {% url 'voir_cours' as voir_cours %}
             <a href="{{ voir_cours }}" class="nav-link {% if request.path == voir_cours %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
+             <i class="nav-icon fas fa-copy"></i>
               <p>
                 Voir les cours
               </p>
@@ -54,25 +50,16 @@
           <li class="nav-item">
             {% url 'feedback' as feedback %}
             <a href="{{ feedback }}" class="nav-link {% if request.path == feedback %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-edit"></i>
               <p>
                 Feedback
               </p>
             </a>
           </li>
           <li class="nav-item">
-            {% url 'student_view_attendance' as student_view_attendance %}
-            <a href="{{ student_view_attendance }}" class="nav-link {% if request.path == student_view_attendance %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Calendrier
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             {% url 'facturation' as facturation %}
             <a href="{{ facturation }}" class="nav-link {% if request.path == facturation %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Paiement
               </p>
@@ -81,7 +68,7 @@
           <li class="nav-item">
             {% url 'voir_homework' as voir_homework %}
             <a href="{{ voir_homework }}" class="nav-link {% if request.path == voir_homework %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-copy"></i>
               <p>
                 Homework
               </p>
@@ -90,22 +77,34 @@
           <li class="nav-item">
             {% url 'afficher_note' as afficher_note %}
             <a href="{{ afficher_note }}" class="nav-link {% if request.path == afficher_note %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-table"></i>
               <p>
                 Notes d'évaluations
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            {% url 'chatbot' as chatbot %}
-            <a href="{{ chatbot }}" class="nav-link {% if request.path == chatbot %} active {% endif %}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Chatbot pour aide
-              </p>
+
+        <li class="nav-item">
+          {% url 'avertissement' as avertissement %}
+            <a href="{{ avertissement }}" class="nav-link {% if request.path == avertissement %} active {% endif %}">
+              <i class="nav-icon far fa-circle text-danger"></i>
+              <p class="text">Avertissement</p>
             </a>
           </li>
+         <li class="nav-item">
 
+            <a href="manage_schedule" class="nav-link ">
+          <i class="nav-icon far fa-calendar-alt"></i>
+              <p class="text">Calendrier</p>
+            </a>
+          </li>
+          <li class="nav-item">
+
+            <a href="manage_exam_day" class="nav-link ">
+          <i class="nav-icon far fa-calendar-alt"></i>
+              <p class="text">Calendrier des éxamens</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

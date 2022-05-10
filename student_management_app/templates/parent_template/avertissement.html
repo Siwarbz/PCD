@@ -1,14 +1,11 @@
 {% extends 'parent_template/base_template.html' %}
 {% block page_title %}
-Voir les notes des examens
+Voir les avertissements
 {% endblock page_title %}
 {% block main_content %}
-<section class="content">
-
-      <!-- Default box -->
-      <div class="card">
+<div class="card">
         <div class="card-header">
-          <h3 class="card-title">EXAMEN</h3>
+          <h3 class="card-title">Les avertissements</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -28,41 +25,36 @@ Voir les notes des examens
                           Date
                       </th>
                       <th style="width: 10%">
-                          EXAMEN
-                      </th>
-                      <th style="width: 10%">
-                          Note
-                      </th>
-                      <th style="width: 30%" class="text-center">
-                          Remarque
+                          Enseignant
                       </th>
                       <th style="width: 10%">
                           Matière
                       </th>
+                      <th style="width: 40%" class="text-center">
+                          Avertissement
+                      </th>
+
                   </tr>
               </thead>
               <tbody>
-              {% for ex in exam %}
+              {% for av in avr %}
                   <tr>
                       <td>
                           #
                       </td>
                       <td>
                           <small>
-                              {{ex.created_at}}
+                              {{av.created_at}}
                           </small>
                       </td>
                       <td>
-                          {{ex.exam_name}}
+                          {{av.teacher_id.id}}
                       </td>
                       <td >
-                          {{ex.mark}}
-                      </td>
-                      <td class="text-center">
-                          {{ex.remarque}}
+                          {{av.teacher_id.subject_name}}
                       </td>
                       <td class="project-actions text-center">
-                         {{ex.subject_id.subject_name}}
+                         Plus que 3 absences
                       </td>
                   </tr>
                   {% endfor %}

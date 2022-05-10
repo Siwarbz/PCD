@@ -1,0 +1,72 @@
+{% extends 'parent_template/base_template.html' %}
+{% block page_title %}
+Voir Calendrier des examens
+{% endblock page_title %}
+{% block main_content %}
+
+ <!-- Main content -->
+ <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Ajouter la classe ,la date de début</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" action="/manage_exam_open" method="post">
+                {% csrf_token %}
+              <div class="card-body">
+
+                <div class="form-group">
+                    <label >Classe</label>
+                    <select  class="form-control"  name="class_id">
+                        {% for classe in classes %}
+                           <option value="{{ classe.id }}">level {{classe.level}} group {{classe.class_name}} </option>
+                        {% endfor %}
+                        </select>
+                  </div>
+                  <div class="form-group">
+                    <label >Numéro</label>
+                    <select  class="form-control"  name="num">
+
+                           <option value="1">Trimestre 1</option>
+                           <option value="2">Trimestre 2 </option>
+                           <option value="3">Trimestre 3</option>
+
+                        </select>
+                  </div>
+
+                  <div class="form-group">
+                    {% if messages %}
+                  <div class="col-12">
+                    {% for mess in messages %}
+                    {% if mess.tags == "error" %}
+                    <div class="alert alert-danger" style="margin-top:10px">{{mess}}</div>
+                    {% endif %}
+                    {% if mess.tags == "success" %}
+                    <div class="alert alert-success" style="margin-top:10px">{{mess}}</div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <!-- /.col -->
+                  </div>
+
+
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Voir Calendrier</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+  {% endblock main_content %}
